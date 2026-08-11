@@ -1,0 +1,19 @@
+# Vault ignore rules. Keep credential material out of the history entirely: a file
+# that reaches one commit is readable forever, even if the next commit deletes it.
+#
+# Verify a credentials file is untracked by listing tracked files and filtering the
+# list, never by naming the file in a command. Naming it is how it ends up in a log.
+*secret*
+*.key
+*.pem
+.env*
+credentials*
+
+# Bulk exports and session transcripts stay local.
+95-data/footprint/
+95-data/sessions/
+
+# Editor and OS noise.
+.obsidian/workspace*
+.DS_Store
+Thumbs.db

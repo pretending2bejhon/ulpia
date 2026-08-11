@@ -1,0 +1,8 @@
+# Repo hygiene only. A vault built from this repo gets its own rules from
+# skeleton/.gitignore, which is the file that guards local credential material.
+.DS_Store
+Thumbs.db
+desktop.ini
+.obsidian/workspace*
+.vscode/
+.idea/
