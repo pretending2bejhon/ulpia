@@ -72,7 +72,7 @@ has two defensible homes; sort by what it *is* and there is exactly one right an
 ## Quickstart
 
 ```bash
-git clone https://github.com/<owner>/ulpia.git
+git clone https://github.com/<OWNER>/ulpia.git
 cp -r ulpia/skeleton my-vault
 cp ulpia/docs/conventions.md my-vault/00-core/meta/conventions.md
 ```
@@ -270,5 +270,5 @@ trustworthy: you can read all of it and know exactly why it said what it said.
 
 ---
 
-MIT licensed — see [LICENSE](LICENSE). Built and maintained by <COPYRIGHT-HOLDER>, for
+MIT licensed — see [LICENSE](LICENSE). Built and maintained by Jhonalbert Alvarez, for
 one working agent, before it was for anyone else.
