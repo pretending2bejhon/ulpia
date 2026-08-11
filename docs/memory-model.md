@@ -159,6 +159,9 @@ The dated types are safe to append to directly because their names are unique by
 construction: a session log and a decision record are bound to a moment that has
 already happened, and two sessions do not write the same moment.
 
+The promotion pass itself — what it drains, what it stamps, and how it reports — is
+[consolidation.md](consolidation.md).
+
 ---
 
 ## The inbox, and why guessing is worse than not knowing

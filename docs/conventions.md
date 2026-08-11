@@ -296,8 +296,7 @@ The mechanics behind each rule. Every one is a tool behaviour, not taste:
   `_*-index.md` globs all of them at once, and every basename stays unique.
 - Some editors forbid `[ ] : \ / ^ | #` in filenames. Avoid them everywhere.
 
-Client, venture and system slugs are lowercase-kebab and **stable**. A slug is never
-renamed for cosmetic reasons — a rename is a three-step transaction (§10).
+Slugs are lowercase-kebab and **stable**; a rename is a three-step transaction (§10).
 
 ---
 
@@ -339,7 +338,8 @@ belief_reason:      # set by consolidation
 
 **An agent that writes a machine-only key corrupts the decay signal**, and nothing errors.
 These keys are how the vault knows which claims are load-bearing, never read, or quietly
-contradicted; hand-setting one is like editing a log to say the job succeeded.
+contradicted; hand-setting one is like editing a log to say the job succeeded. The pass
+that owns them is [consolidation.md](consolidation.md).
 
 ### Conditional additions
 
@@ -521,7 +521,8 @@ nothing and **no error is raised.**
 **The last row is the point.** A table listing only the paths someone remembered leaves a
 reader unable to distinguish an omission from a permission, and the safe reading of a gap
 is not the one an eager agent will pick. Semantic and procedural memory change through
-consolidation, never mid-session — reasoning in [memory-model.md](memory-model.md).
+consolidation, never mid-session — reasoning in [memory-model.md](memory-model.md), the
+pass itself in [consolidation.md](consolidation.md).
 
 ### Concurrency
 
@@ -586,8 +587,7 @@ beyond the five, new front-matter key: each gets a `__decision.md` first.
 
 ## 12 · Lint
 
-**Report only. Nothing is auto-fixed** — an auto-fixer that is wrong once teaches everyone
-to stop reading the report, so a human decides what to fix.
+**Report only.** An auto-fixer that is wrong once teaches everyone to stop reading it.
 
 - `type` / `status` / `created` / `tags` present
 - `reviewed` not older than `updated`
