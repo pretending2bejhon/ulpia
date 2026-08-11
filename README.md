@@ -72,7 +72,7 @@ has two defensible homes; sort by what it *is* and there is exactly one right an
 ## Quickstart
 
 ```bash
-git clone https://github.com/<OWNER>/ulpia.git
+git clone https://github.com/pretending2bejhon/ulpia.git
 cp -r ulpia/skeleton my-vault
 cp ulpia/docs/conventions.md my-vault/00-core/meta/conventions.md
 ```
