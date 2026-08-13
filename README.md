@@ -32,6 +32,21 @@ of the empire that built it. Plain files outlast the systems stacked on top of t
 
 ---
 
+## What this is — and is not
+
+Three things ship here: the **specification** ([docs/](docs/)), a copyable empty
+**skeleton**, and a complete worked **example vault**. No code ships — that is a
+decision, not a gap. The method describes an operating loop (nightly consolidation,
+executed `verify:` lines, lint); this repository specifies those contracts precisely
+enough to implement, and [docs/consolidation.md](docs/consolidation.md) states the
+reasoning. You bring the runner: any agent that reads and writes files. The author runs
+the loop with Claude Code against a production vault; reference scripts are planned for
+v1.1. Until then, treat this as a specification and a template you instantiate — not a
+package you install. The trust model — what is code, what is data, and what never
+crosses between them — is in [SECURITY.md](SECURITY.md).
+
+---
+
 ## Why files
 
 **Because a literal search over a purposefully-shaped tree is a serious retrieval
@@ -82,13 +97,17 @@ cp ulpia/docs/conventions.md my-vault/00-core/meta/conventions.md
 
 Then:
 
-1. Open `my-vault/CLAUDE.md` and fill every angle-bracketed slot — OPERATOR, AGENT-NAME
-   and VENTURE — then delete the setup paragraph.
-2. Point your agent at the vault. Any agent that can read and write files will do.
-3. First session: it reads `CLAUDE.md`, then `00-core/hot.md`, and nothing else until
-   the task needs more.
-4. Capture into `10-memory/inbox.md` whenever placement is unclear. Sorting it out is
-   consolidation's job, not yours.
+1. Fill every angle-bracketed slot in the copied tree — OPERATOR, AGENT-NAME, VENTURE
+   and the `<YYYY-MM-DD>` dates. `CLAUDE.md` carries most of them; `00-core/hot.md` and
+   the `_*-index.md` files carry the rest (`rg '<[A-Z]' my-vault` lists every one). The
+   slots inside `00-core/meta/templates/` stay — those files are blank forms. Then
+   delete the setup paragraph in `CLAUDE.md`.
+2. Give the copied `conventions.md` its front-matter — its opening lines say exactly
+   what to add.
+3. Point your agent at the vault. Any agent that can read and write files will do.
+4. First session: it reads `CLAUDE.md`, then `00-core/hot.md`, and nothing else until
+   the task needs more. Capture into `10-memory/inbox.md` whenever placement is
+   unclear — sorting it out is consolidation's job, not yours.
 
 That is the whole setup. Everything below is explanation.
 
@@ -160,7 +179,7 @@ And the body opens with the line that matters, above the arithmetic:
 > `UNVERIFIED`.
 
 **Any number that governs a decision names its own breaking assumption first**, and
-carries a `verify:` the nightly loop actually executes — so a gate nobody checked becomes
+carries a `verify:` your nightly loop executes — so a gate nobody checked becomes
 a row in tonight's report instead of silence. A caveat at the bottom of a note arrives
 after the reader has already believed the number. The whole file is
 [in the example vault](example-vault/10-memory/semantic/studio/kiln-capacity-model__fact.md).
@@ -183,7 +202,7 @@ Five files worth opening, each for one convention:
 
 - [`kiln-capacity-model__fact.md`](example-vault/10-memory/semantic/studio/kiln-capacity-model__fact.md)
   — **the falls-over line.** A number that governs a decision names the assumption under
-  it on body line one, and carries a `verify:` the nightly loop actually executes.
+  it on body line one, and carries a `verify:` your nightly loop executes.
 - [`glaze-supplier-north-shore__fact.md`](example-vault/10-memory/semantic/suppliers/glaze-supplier-north-shore__fact.md)
   — **validity, not patching.** A claim that stopped being true keeps its own text and
   gets `superseded_by:`. Compare it against
@@ -202,7 +221,9 @@ Five files worth opening, each for one convention:
 ## Lessons from the first months
 
 Seven things this cost to learn. They are the reason the rules above look the way they
-do, and every one of them failed **silently** the first time.
+do, and every one of them failed **silently** the first time. They are field notes from
+one operator's production vault — n = 1, no control group; take the shape, not the
+decimals.
 
 **Six processes writing one file produce fewer files than success messages.** Lost
 writes do not error. They are reported as recorded, which is strictly worse than a crash
