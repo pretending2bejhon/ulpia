@@ -39,7 +39,10 @@ strategy, not a fallback.** A 2026 study of agentic search — *Is Grep All You 
 Agent Harnesses Reshape Agentic Search* ([arXiv:2605.15184](https://arxiv.org/abs/2605.15184),
 Sen, Kasturi, Lumer, Gulati and Subbiah) — compared grep-based retrieval against vector
 retrieval across agent harnesses on 116 LongMemEval questions and found grep generally
-scored higher in that comparison. Their own caveat matters and is repeated here: results
+scored higher in that comparison — in their Table 1, grep-based inline retrieval won
+its vector counterpart in every model-harness pairing tested, up to 93.1% against
+83.6% with the strongest pairing, while the *same model* swung from 93.1% to 76.7% on
+harness choice alone. Their own caveat matters and is repeated here: results
 "depend strongly on which harness and tool-calling style is used." This is not *vector
 search is bad*. It is that the shape of your file tree **is** your retrieval index, and
 it is a design surface most people leave on the floor.
@@ -255,6 +258,97 @@ here is the trade:
 quote, audit and correct; a vector layer for fuzzy recall across a corpus too large to
 read. What this method refuses to trade away is the property that makes memory
 trustworthy: you can read all of it and know exactly why it said what it said.
+
+---
+
+## Benchmarks, honestly
+
+**No number in this section was produced by Ulpia.** Every score is the publisher's
+own reported result under its own eval setup — actor model, judge and question subset
+all differ per row, so a row compares against the baseline in its own source, never
+against another row. Where a vendor and a third party disagree, both numbers appear.
+
+The two benchmarks the field actually uses:
+
+- **LongMemEval** ([arXiv:2410.10813](https://arxiv.org/abs/2410.10813), ICLR 2025,
+  MIT) — 500 questions over long chat histories: information extraction,
+  multi-session and temporal reasoning, knowledge updates, and abstention.
+- **LoCoMo** ([arXiv:2402.17753](https://arxiv.org/abs/2402.17753), ACL 2024,
+  CC BY-NC) — QA over very long multi-session dialogues. Standard practice runs four
+  of its five categories; the fifth ships without gold answers.
+
+| Benchmark | System | Published score | Actor model | Source |
+|---|---|---|---|---|
+| LongMemEval-S | Full context, no memory system | 63.8% | gpt-4o | [arXiv:2501.13956](https://arxiv.org/abs/2501.13956) |
+| LongMemEval-S | Zep / Graphiti | 71.2% | gpt-4o | [arXiv:2501.13956](https://arxiv.org/abs/2501.13956) |
+| LongMemEval-S | Supermemory | 81.6% | gpt-4o | [supermemory.ai](https://supermemory.ai/research/longmembench/) |
+| LongMemEval-S | Mastra observational memory | 84.23% | gpt-4o | [mastra.ai](https://mastra.ai/research/observational-memory) |
+| LongMemEval | Mem0, own 2026 eval setup | 94.4 | self-published | [mem0.ai/research](https://mem0.ai/research) |
+| LoCoMo | Mem0 | 66.88 J | gpt-4o-mini | [arXiv:2504.19413](https://arxiv.org/abs/2504.19413) |
+| LoCoMo | Mem0, graph variant | 68.44 J | gpt-4o-mini | [arXiv:2504.19413](https://arxiv.org/abs/2504.19413) |
+| LoCoMo | Zep, as configured by Mem0 | 65.99 J · disputed | gpt-4o-mini | [arXiv:2504.19413](https://arxiv.org/abs/2504.19413) |
+| LoCoMo | Zep, own corrected run | 75.14 J | gpt-4o-mini | [getzep.com](https://blog.getzep.com/lies-damn-lies-statistics-is-mem0-really-sota-in-agent-memory/) |
+| LoCoMo | **Letta filesystem agent — markdown files + search tools** | **74.0%** | gpt-4o-mini | [letta.com](https://www.letta.com/blog/benchmarking-ai-agent-memory/) |
+
+*Scores marked J use the Mem0 paper's LLM-judge metric; percentage rows use each
+source's own accuracy metric. The two are not interchangeable.*
+
+The row that matters most here is the last one: a third party with no stake in files
+put an agent over plain markdown files with search tools on LoCoMo, and it landed above
+the dedicated graph-memory variant in the same comparison. Files with a good harness
+are a competitive memory substrate, measured by someone else.
+
+**Why these numbers disagree, and why you should care.** The two loudest vendors in
+this field measured each other and got different answers: Mem0's paper scored Zep at
+65.99; Zep re-ran it with a corrected configuration and published 75.14. A third-party
+audit of LoCoMo found 6.4% of its ground truth broken and the standard LLM judge
+accepting 62.8% of deliberately wrong-but-topical answers. And both corpora fit inside
+a frontier model's context window, which is why a full-context baseline with no memory
+system at all is competitive in every table. (DMR, the earlier standard, is omitted
+entirely: a full-context baseline scores 98.0% on it.) Read every leaderboard in this
+field — including any future one in this repo — with all of that in mind.
+
+**Self-run numbers are v1.1, and the method is pinned now:**
+
+- LongMemEval-S, all 500 questions, plus the 116-question subset used by
+  [arXiv:2605.15184](https://arxiv.org/abs/2605.15184) so the result is directly
+  comparable to that paper's Table 1.
+- At least one external memory system run through the same harness as a control. A
+  harness that only ever reports its own method winning is self-graded homework.
+- The harness, transcripts, pinned commit, actor model, judge model and total cost
+  published in this repo, so a stranger can reproduce every number.
+- LoCoMo under its research-only license, four of five categories, clearly framed.
+
+Until those land, Ulpia claims exactly nothing about benchmarks. The sections above
+are the argument; this section is the state of the field.
+
+---
+
+## Where this sits
+
+Three 2026 results give the design bets in this repo named counterparts:
+
+- **The harness learns; the weights stay frozen.** *Continual Harness* (Karten et
+  al., [arXiv:2605.09998](https://arxiv.org/abs/2605.09998)) formalizes an agent that
+  improves by editing its own prompt, memories, skills and subagent specs — an act
+  phase, then a separate refine phase that rereads raw trajectories and consolidates,
+  all over plain files, weights untouched. That act/refine split is this method's
+  session/consolidation split, and the 1-to-5 confidence integers on their memory
+  entries are the same instinct as this method's belief machinery.
+- **Long context as an environment, not a prompt.** *Recursive Language Models*
+  (Zhang, Kraska & Khattab, [arXiv:2512.24601](https://arxiv.org/abs/2512.24601))
+  keeps long context outside the window as a variable the model programs over — and,
+  left free to choose a strategy, frontier models converge on peeking at structure
+  first, then grepping. A typed tree is that environment made durable, and the
+  nightly loop pre-computes at consolidation time what an RLM pays for again at every
+  query.
+- **Both, productized.** Prime Intellect's
+  [prime-agent](https://github.com/PrimeIntellect-ai/prime-agent) (MIT, 2026) ships
+  both ideas, with memory held as a machine-edited JSON ledger refined between
+  episodes. Ulpia is the same thesis on the opposite substrate: memory a human can
+  read, diff and correct line by line, with truth maintenance at *read* time —
+  supersession, review dates, a `verify:` line a script executes — not only quality
+  control at write time.
 
 ---
 
