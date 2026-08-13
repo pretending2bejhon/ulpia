@@ -6,20 +6,6 @@ In daily production since June 2026. No vector database.
 
 *Straight to setup: [Quickstart](#quickstart).*
 
-```mermaid
-flowchart TD
-    A["CLAUDE.md — always loaded"] --> B["00-core/hot.md — under 500 words, overwritten every session"]
-    B --> C{"Can it be true or false?"}
-    C -->|a claim| M["10-memory/ — loaded on demand"]
-    C -->|a thing| K["20-ventures/ · 30-personal/ · 40-artifacts/ — artifacts, no truth value"]
-    M --> E["episodic/ — bound by a date"]
-    M --> S["semantic/ — bound by nothing, undated"]
-    M --> P["procedural/ — bound by a repeatable procedure"]
-    M --> R["prospective/ — bound by a future date"]
-    M --> I["inbox.md — not sorted yet"]
-    B -.->|by name only, never automatically| N["90-machinery/ · 95-data/ · 99-archive/"]
-```
-
 Most agent-memory projects give you a store and leave the hard part to you: **deciding
 where a thing goes.** Ulpia's contribution is the two rules that make that decision
 mechanical — a hard split between *claims* and *artifacts*, and a placement procedure
