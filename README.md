@@ -99,12 +99,15 @@ Then:
 
 1. Fill every angle-bracketed slot in the copied tree — OPERATOR, AGENT-NAME, VENTURE
    and the `<YYYY-MM-DD>` dates. `CLAUDE.md` carries most of them; `00-core/hot.md` and
-   the `_*-index.md` files carry the rest (`rg '<[A-Z]' my-vault` lists every one). The
-   slots inside `00-core/meta/templates/` stay — those files are blank forms. Then
-   delete the setup paragraph in `CLAUDE.md`.
+   the `_*-index.md` files carry the rest.
+   `rg '<[A-Z]' my-vault --glob '!00-core/meta/**'` lists every one — everything under
+   `00-core/meta/` keeps its slots, because templates are blank forms and the spec's
+   examples are examples. Then delete the setup paragraph in `CLAUDE.md`.
 2. Give the copied `conventions.md` its front-matter — its opening lines say exactly
    what to add.
-3. Point your agent at the vault. Any agent that can read and write files will do.
+3. Point your agent at the vault. Any agent that can read and write files will do. If
+   yours auto-loads a different boot filename — `AGENTS.md`, `GEMINI.md` — rename
+   `CLAUDE.md` to match; nothing inside it is agent-specific.
 4. First session: it reads `CLAUDE.md`, then `00-core/hot.md`, and nothing else until
    the task needs more. Capture into `10-memory/inbox.md` whenever placement is
    unclear — sorting it out is consolidation's job, not yours.
@@ -311,7 +314,8 @@ The two benchmarks the field actually uses:
 | LoCoMo | **Letta filesystem agent — markdown files + search tools** | **74.0%** | gpt-4o-mini | [letta.com](https://www.letta.com/blog/benchmarking-ai-agent-memory/) |
 
 *Scores marked J use the Mem0 paper's LLM-judge metric; percentage rows use each
-source's own accuracy metric. The two are not interchangeable.*
+source's own accuracy metric. The two are not interchangeable. Paper rows are pinned by
+arXiv id; vendor-page rows were retrieved August 2026, and vendor pages can change.*
 
 The row that matters most here is the last one: a third party with no stake in files
 put an agent over plain markdown files with search tools on LoCoMo, and it landed above

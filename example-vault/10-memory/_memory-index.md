@@ -21,7 +21,7 @@ Pick the type by **how the claim is bound**, not by what it is about.
 
 | Type | Answers | Bound by | n |
 |---|---|---|---|
-| [[_episodic-index\|episodic/]] | what happened, and what was decided | **a date** | 2 |
+| [[_episodic-index\|episodic/]] | what happened, and what was decided | **a date** | 3 |
 | [[_semantic-index\|semantic/]] | what is true right now | nothing — undated | 6 |
 | [[_procedural-index\|procedural/]] | how to do it, and what breaks when you don't | a repeatable procedure | 2 |
 | [[_prospective-index\|prospective/]] | what is intended | a future date | 1 |
@@ -50,7 +50,7 @@ Semantic and procedural memory change through consolidation, never mid-session �
 ```bash
 rg 'domain/clay' 10-memory/                  # every claim about the agent itself
 rg --files -g '*__decision.md' 10-memory/    # every decision ever, one call
-rg '^- \[decision\]'                         # typed observation lines, vault-wide
+rg '^- \[decision\]' 10-memory/              # typed observation lines, all of memory
 ```
 
 Domains in live use: `clay` · `voss-ceramics` · `studio` · `cafe-lumen`.

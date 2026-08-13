@@ -56,7 +56,7 @@ by query.
 ```bash
 rg 'domain/<slug>' 10-memory/                # every claim about one domain, all four types
 rg --files -g '*__decision.md' 10-memory/    # every decision ever, one call
-rg '^- \[decision\]'                         # typed observation lines, vault-wide
+rg '^- \[decision\]' 10-memory/              # typed observation lines, all of memory
 ```
 
 Naming, front-matter and growth rules: `00-core/meta/conventions.md`.

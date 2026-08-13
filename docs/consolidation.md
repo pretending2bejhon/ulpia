@@ -21,7 +21,8 @@ live session.** That asymmetry is not caution, it is arithmetic.
 Those two layers are organised by *subject*, so two sessions working on the same customer
 plausibly want to edit the same file. The dated layers are not: a session log and a
 decision record are bound to a moment that already happened, and two sessions do not
-write the same moment.
+write the same moment — their files are distinct by name, so concurrent sessions write
+side by side, never through each other.
 
 Concurrent writes to one file do not raise an error. They produce **fewer files than
 success messages** — writes are lost silently and reported as recorded, which is worse

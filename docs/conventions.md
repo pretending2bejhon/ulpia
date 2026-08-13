@@ -6,12 +6,12 @@ judgment. That is the design goal: **if a rule requires inference about where so
 belongs, the rule is wrong.**
 
 Copy this file into your vault at `00-core/meta/conventions.md` and give it front-matter
-when you do (`type: meta`, `status: active`, a `created:` date — §6); it ships without
-front-matter here so it renders cleanly as repository documentation. The relative links
-in this file — to memory-model.md and consolidation.md — point inside the repository and
-will not resolve from your vault; the file needs none of them to do its job.
-[memory-model.md](memory-model.md) explains *why* memory splits into four types; this
-file explains *how* every file is named, shaped and placed. The two do not overlap.
+when you do (`type: meta`, `status: active`, a `created:` date, and the matching `tags` —
+§6 and §7); it ships without front-matter here so it renders cleanly as repository
+documentation. Companion files are referenced by plain name, never linked, so nothing
+breaks when this file leaves the repository: `memory-model.md` explains *why* memory
+splits into four types; this file explains *how* every file is named, shaped and placed.
+The two do not overlap.
 
 ---
 
@@ -27,7 +27,7 @@ An artifact does not go stale — it becomes irrelevant.
 
 The boundary is *what the thing is and who maintains it*, never *what it is about*: a
 claim about a client and a deliverable for that client live in different trees, and that
-is correct. Reasoning: [memory-model.md](memory-model.md).
+is correct. Reasoning: `memory-model.md`.
 
 ---
 
@@ -47,9 +47,12 @@ CLAUDE.md         boot file. always loaded.
 
 **Below 90 is knowledge. 90 and above is not.** An agent may load anything under 40
 without being asked; nothing at 90 or above is ever loaded unless a human names it. That
-is the layout's whole security posture: machinery is code and raw input is
+is the layout's entire loading defence: machinery is code and raw input is
 attacker-controllable text, so neither enters a session by accident — and because the
 boundary is a number in a folder name, an agent enforces it without reading the contents.
+It is a convention, not an access control. It governs what a well-behaved agent loads; it
+stops nothing that ignores conventions. Enforcement, where needed, belongs to the harness
+layer — the repository's SECURITY.md draws that line.
 
 Numbers are spaced by ten so a tier can be inserted without renumbering. **A new top-level
 folder requires a decision record** in the episodic folder — structure that can be added
@@ -350,7 +353,7 @@ belief_reason:      # set by consolidation
 **An agent that writes a machine-only key corrupts the decay signal**, and nothing errors.
 These keys are how the vault knows which claims are load-bearing, never read, or quietly
 contradicted; hand-setting one is like editing a log to say the job succeeded. The pass
-that owns them is [consolidation.md](consolidation.md).
+that owns them is `consolidation.md`.
 
 ### Conditional additions
 
@@ -362,8 +365,8 @@ that owns them is [consolidation.md](consolidation.md).
 | anything sourced | `source`, `source_type: internal \| external` |
 | a superseded claim | `valid_from`, `superseded_by` |
 
-Starting points for all six authored types:
-[`../skeleton/00-core/meta/templates/`](../skeleton/00-core/meta/templates/).
+Starting points for all six authored types ship in the repository at
+`skeleton/00-core/meta/templates/`.
 
 ### Rules that prevent silent breakage
 
@@ -516,7 +519,9 @@ Three speeds, and the first line is the point: a session starts with a fixed, ti
 always-current context and pays for more only when the task needs it, so the cost of
 starting does not grow as the vault grows. `hot.md` is a cache, not a journal —
 **overwritten completely, never appended to**, because a cache that is appended to is a
-log with a misleading name that taxes every session boot from then on.
+log with a misleading name that taxes every session boot from then on. And `hot.md` is
+**derived state**: every line in it restates or points at something owned elsewhere — it
+owns nothing, which is what makes whole-overwrite safe.
 
 **Anything at 90 or above is referenced as a path in backticks, never as a
 `[[wikilink]]`.** That is the corollary of "by name only", and it is not cosmetic: those
@@ -540,8 +545,8 @@ nothing and **no error is raised.**
 **The last row is the point.** A table listing only the paths someone remembered leaves a
 reader unable to distinguish an omission from a permission, and the safe reading of a gap
 is not the one an eager agent will pick. Semantic and procedural memory change through
-consolidation, never mid-session — reasoning in [memory-model.md](memory-model.md), the
-pass itself in [consolidation.md](consolidation.md).
+consolidation, never mid-session — reasoning in `memory-model.md`, the
+pass itself in `consolidation.md`.
 
 ### Concurrency
 
@@ -557,6 +562,13 @@ never state; `hot.md` is **overwritten whole**, and last-writer-wins is acceptab
 files are **per-session by name** — date plus a session slug, as in
 `2026-05-14_glaze-reorder-session__log.md` — so two same-day sessions collide only if
 they also collide on what they are doing, which is exactly the collision worth noticing.
+
+Two mechanics make those modes real. An append is a **single write of one complete
+line**, never read-modify-write. And when two sessions could plausibly share a task and
+a day, the working-file slug carries a unique session token. Capture is the one layer
+allowed to trade durability for zero coordination — and if losing a particular line
+would be unacceptable, that line was never inbox material: it belongs in the session's
+own working file, where there is one writer by construction.
 
 ---
 

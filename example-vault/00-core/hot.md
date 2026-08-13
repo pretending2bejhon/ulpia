@@ -20,9 +20,10 @@ If a line here has outlived its usefulness, delete it — this is a cache, not a
 
 ## Now
 
-- **The old kiln lost its bottom element on 2026-05-12 and Tomas has not been back yet.**
-  Until he has, plan on three firings a week, not four. That breaks the assumption under
-  [[kiln-capacity-model__fact]] — read its falls-over line before quoting any lead time.
+- **The old kiln lost its bottom element on 2026-05-12 and Tomas has not been back yet**
+  — [[2026-05-12_kiln-element-failure__log]]. Until he has, plan on three firings a week,
+  not four. That breaks the assumption under [[kiln-capacity-model__fact]] — read its
+  falls-over line before quoting any lead time.
 - **Café Lumen's first wholesale order is live**: 60 pieces, delivery promised 2026-05-29.
   Bisque is done, glaze firing is the constraint. Terms and contact: [[cafe-lumen__fact]].
 - **Glaze supply switched to Hearthline** as of 2026-05-14 — North Shore raised their

@@ -21,4 +21,4 @@ carried by the filename suffix and `type:`, never by a second folder layer — w
 
 | Month | Notes | n |
 |---|---|---|
-| `2026-05/` | [[2026-05-02_cafe-lumen-first-order__log]] · [[2026-05-10_second-kiln__decision]] | 2 |
+| `2026-05/` | [[2026-05-02_cafe-lumen-first-order__log]] · [[2026-05-10_second-kiln__decision]] · [[2026-05-12_kiln-element-failure__log]] | 3 |
