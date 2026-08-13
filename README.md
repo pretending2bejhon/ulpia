@@ -1,5 +1,3 @@
-![Ulpia — a file-system memory architecture for AI agents: claims earn the gate, artifacts stay bone, nothing crosses the 90-line](assets/banner.png)
-
 # Ulpia
 
 **A file-system memory architecture for AI agents.** Typed markdown, a placement
