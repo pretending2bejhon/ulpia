@@ -9,9 +9,8 @@
 .env*
 credentials*
 
-# Bulk exports and session transcripts stay local.
-95-data/footprint/
-95-data/sessions/
+# Bulk exports stay local.
+95-data/exports/
 
 # Editor and OS noise.
 .obsidian/workspace*

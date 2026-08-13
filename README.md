@@ -279,11 +279,10 @@ The two benchmarks the field actually uses:
 
 | Benchmark | System | Published score | Actor model | Source |
 |---|---|---|---|---|
-| LongMemEval-S | Full context, no memory system | 63.8% | gpt-4o | [arXiv:2501.13956](https://arxiv.org/abs/2501.13956) |
+| LongMemEval-S | Full context, no memory system | 60.2% | gpt-4o | [arXiv:2501.13956](https://arxiv.org/abs/2501.13956) |
 | LongMemEval-S | Zep / Graphiti | 71.2% | gpt-4o | [arXiv:2501.13956](https://arxiv.org/abs/2501.13956) |
-| LongMemEval-S | Supermemory | 81.6% | gpt-4o | [supermemory.ai](https://supermemory.ai/research/longmembench/) |
 | LongMemEval-S | Mastra observational memory | 84.23% | gpt-4o | [mastra.ai](https://mastra.ai/research/observational-memory) |
-| LongMemEval | Mem0, own 2026 eval setup | 94.4 | self-published | [mem0.ai/research](https://mem0.ai/research) |
+| LongMemEval | Mem0, own 2026 eval setup, self-published | 94.4 | not stated | [mem0.ai/research](https://mem0.ai/research) |
 | LoCoMo | Mem0 | 66.88 J | gpt-4o-mini | [arXiv:2504.19413](https://arxiv.org/abs/2504.19413) |
 | LoCoMo | Mem0, graph variant | 68.44 J | gpt-4o-mini | [arXiv:2504.19413](https://arxiv.org/abs/2504.19413) |
 | LoCoMo | Zep, as configured by Mem0 | 65.99 J · disputed | gpt-4o-mini | [arXiv:2504.19413](https://arxiv.org/abs/2504.19413) |
@@ -300,12 +299,14 @@ are a competitive memory substrate, measured by someone else.
 
 **Why these numbers disagree, and why you should care.** The two loudest vendors in
 this field measured each other and got different answers: Mem0's paper scored Zep at
-65.99; Zep re-ran it with a corrected configuration and published 75.14. A third-party
-audit of LoCoMo found 6.4% of its ground truth broken and the standard LLM judge
-accepting 62.8% of deliberately wrong-but-topical answers. And both corpora fit inside
+65.99; Zep re-ran it with a corrected configuration and published 75.14. A
+[third-party audit of LoCoMo](https://github.com/dial481/locomo-audit) found 6.4% of
+its ground truth broken (99 of 1,540 questions) and the standard LLM judge accepting
+62.81% of deliberately wrong-but-topical answers. And both corpora fit inside
 a frontier model's context window, which is why a full-context baseline with no memory
 system at all is competitive in every table. (DMR, the earlier standard, is omitted
-entirely: a full-context baseline scores 98.0% on it.) Read every leaderboard in this
+entirely: a full-context baseline scores 98.0% on it —
+[arXiv:2501.13956](https://arxiv.org/abs/2501.13956).) Read every leaderboard in this
 field — including any future one in this repo — with all of that in mind.
 
 **Self-run numbers are v1.1, and the method is pinned now:**
@@ -333,8 +334,8 @@ Three 2026 results give the design bets in this repo named counterparts:
   improves by editing its own prompt, memories, skills and subagent specs — an act
   phase, then a separate refine phase that rereads raw trajectories and consolidates,
   all over plain files, weights untouched. That act/refine split is this method's
-  session/consolidation split, and the 1-to-5 confidence integers on their memory
-  entries are the same instinct as this method's belief machinery.
+  session/consolidation split, and the confidence grades their memory entries carry
+  are the same instinct as this method's belief machinery.
 - **Long context as an environment, not a prompt.** *Recursive Language Models*
   (Zhang, Kraska & Khattab, [arXiv:2512.24601](https://arxiv.org/abs/2512.24601))
   keeps long context outside the window as a variable the model programs over — and,
@@ -344,7 +345,7 @@ Three 2026 results give the design bets in this repo named counterparts:
   query.
 - **Both, productized.** Prime Intellect's
   [prime-agent](https://github.com/PrimeIntellect-ai/prime-agent) (MIT, 2026) ships
-  both ideas, with memory held as a machine-edited JSON ledger refined between
+  both ideas, with memory held in a machine-edited JSON state file refined between
   episodes. Ulpia is the same thesis on the opposite substrate: memory a human can
   read, diff and correct line by line, with truth maintenance at *read* time —
   supersession, review dates, a `verify:` line a script executes — not only quality
