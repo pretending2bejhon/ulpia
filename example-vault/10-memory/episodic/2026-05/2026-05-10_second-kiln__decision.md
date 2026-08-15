@@ -23,7 +23,7 @@ aliases:
 
 Ruled 2026-05-10, eight days after the Café Lumen order made the capacity ceiling
 concrete. The kind of note this is comes from the `__decision` suffix and `type:`, not from
-its folder — it sits in the month folder alongside session logs, because episodic memory
+its folder: it sits in the month folder alongside session logs, because episodic memory
 has one axis and that axis is time.
 
 ## The ruling
@@ -45,6 +45,6 @@ wholesale is the only demand that arrives in blocks large enough to plan around.
 
 The capacity number that triggered this is [[kiln-capacity-model__fact]], and **its
 falls-over line is not verified**. If the old kiln turns out to manage fewer than four
-firings in a normal week, this decision gets stronger, not weaker — which is why it was
+firings in a normal week, this decision gets stronger, not weaker, which is why it was
 safe to rule before the assumption was checked. Nothing has been ordered yet;
 `00-core/hot.md` carries the current state.

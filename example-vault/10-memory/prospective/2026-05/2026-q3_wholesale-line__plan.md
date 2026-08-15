@@ -19,7 +19,7 @@ aliases:
 
 The autumn wholesale line is a fixed set of shapes and glazes that a café can order from
 without the studio quoting a bespoke run each time. The filename carries the quarter rather
-than a day, and it sits in the month folder it was authored in — `2026-q3` inside
+than a day, and it sits in the month folder it was authored in: `2026-q3` inside
 `2026-05/`.
 
 ## Outcome
@@ -32,7 +32,7 @@ Quoting a wholesale enquiry takes minutes rather than an evening.
 
 1. Pull the shapes that actually sold from the spring market table and the Café Lumen
    order, not the ones that were most interesting to make.
-2. Fix two glazes and test both in Hearthline's clear — [[glaze-supplier-hearthline__fact]].
+2. Fix two glazes and test both in Hearthline's clear ([[glaze-supplier-hearthline__fact]]).
 3. Set one lead time that holds against the capacity ceiling, allowing for the second kiln
    not arriving: [[kiln-capacity-model__fact]] and [[2026-05-10_second-kiln__decision]].
 4. Draft the line sheet as an artifact under

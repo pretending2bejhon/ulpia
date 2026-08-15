@@ -17,6 +17,6 @@ aliases:
 
 This vault follows the conventions in [`docs/conventions.md`](../../../docs/conventions.md).
 
-That file is the single source of truth and is not duplicated here — a copied spec is a
+That file is the single source of truth and is not duplicated here: a copied spec is a
 spec that drifts. Copy it into this folder only if you take the vault somewhere the
 repository does not follow.

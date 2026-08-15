@@ -10,7 +10,7 @@ tags:
 
 # Procedural index
 
-**procedural/** holds claims bound to a repeatable procedure — how to do it, and what
+**procedural/** holds claims bound to a repeatable procedure: how to do it, and what
 breaks when you don't. Written by consolidation, never mid-session.
 
 | Area | Procedures | n |

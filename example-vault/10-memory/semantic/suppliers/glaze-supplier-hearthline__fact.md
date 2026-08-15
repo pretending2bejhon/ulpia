@@ -34,7 +34,7 @@ amount.
 
 Hearthline ships in five working days and holds no local counter.
 Glaze is therefore no longer a same-week purchase, and the firing schedule has to carry
-that lead time — the one operational thing this change actually costs.
+that lead time: the one operational thing this change actually costs.
 
 ## Untested
 

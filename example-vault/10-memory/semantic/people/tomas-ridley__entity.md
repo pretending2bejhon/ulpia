@@ -37,5 +37,5 @@ the gap that turns a kiln fault into a missed delivery date.
 ## Why he is an entity and not a fact
 
 Tomas Ridley is a stable subject that other claims point at, so he gets his own note rather
-than a paragraph inside each of them. Anything bound to a date — the 2026-05-12 element
-failure, what it cost, when he came — belongs in an episodic log, not here.
+than a paragraph inside each of them. Anything bound to a date (the 2026-05-12 element
+failure, what it cost, when he came) belongs in an episodic log, not here.

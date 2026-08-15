@@ -15,7 +15,7 @@ aliases:
 # Hot
 
 **Overwritten completely every session. Never appended to. Under 500 words.**
-If a line here has outlived its usefulness, delete it — this is a cache, not a journal.
+If a line here has outlived its usefulness, delete it: this is a cache, not a journal.
 
 This file may **cite** a number that governs a decision. It may never **originate** one:
 the number lives in a durable note that carries its own falls-over line, and this file

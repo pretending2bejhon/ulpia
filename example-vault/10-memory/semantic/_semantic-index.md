@@ -15,7 +15,7 @@ aliases:
 
 # Semantic index
 
-**semantic/** holds claims bound by nothing — true right now, undated, and the layer most
+**semantic/** holds claims bound by nothing: true right now, undated, and the layer most
 likely to go quietly wrong. Written by consolidation, never mid-session. Sub-folders split
 on one axis: subject area.
 

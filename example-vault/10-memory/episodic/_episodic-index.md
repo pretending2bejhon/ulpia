@@ -16,7 +16,7 @@ aliases:
 # Episodic index
 
 **episodic/** holds claims bound by a date. One folder per month, `YYYY-MM/`. Kind is
-carried by the filename suffix and `type:`, never by a second folder layer — which is why
+carried by the filename suffix and `type:`, never by a second folder layer, which is why
 `rg --files -g '*__decision.md' 10-memory/episodic/` returns every decision in one call.
 
 | Month | Notes | n |

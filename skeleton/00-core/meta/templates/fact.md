@@ -22,4 +22,4 @@ aliases:
 
 ## <Concept>
 
-<One sentence per line. Repeat the subject noun in the first sentence of every section — a search hit arrives with no antecedent.>
+<One sentence per line. Repeat the subject noun in the first sentence of every section: a search hit arrives with no antecedent.>

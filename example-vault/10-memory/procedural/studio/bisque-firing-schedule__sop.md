@@ -36,9 +36,9 @@ capacity model in [[kiln-capacity-model__fact]] rests on.
 
 Skipping the candle traps water in the clay body and it leaves as steam, which is what
 blows the base off a mug in step 2 and takes its neighbours with it.
-Rushing the 600°C ramp does the same thing more quietly — the piece survives the firing and
+Rushing the 600°C ramp does the same thing more quietly. The piece survives the firing and
 cracks a month later in a customer's hand.
 Unloading warm crazes the piece invisibly; it will hold water on the day it is sold and
 seep six weeks later.
-Skipping step 6 is how an untested clear becomes a recall — the reason it is written down
+Skipping step 6 is how an untested clear becomes a recall: the reason it is written down
 is [[glaze-supplier-hearthline__fact]].

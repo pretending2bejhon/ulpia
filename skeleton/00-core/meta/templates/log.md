@@ -19,5 +19,5 @@ aliases:
 
 ## <Concept>
 
-- [decision] <one typed observation per line — decision, constraint, risk, question>
+- [decision] <one typed observation per line: decision, constraint, risk, question>
 - [constraint] <the ISO date belongs in the filename, because a log is bound by when it happened>

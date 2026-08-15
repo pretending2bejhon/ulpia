@@ -1,4 +1,4 @@
-# CLAUDE.md — you are reading a spec, not a vault
+# CLAUDE.md: you are reading a spec, not a vault
 
 **This repository is Ulpia: a template and a written method for agent memory. It is not
 itself a memory store.** Nothing here is a fact about the person who cloned it. Do not
@@ -11,7 +11,7 @@ loaded boot file, one cache of what is true now, everything else pulled on deman
 
 ```
 README.md          the argument, the quickstart, the honest comparison
-docs/              the method in full — read on demand, not up front
+docs/              the method in full: read on demand, not up front
 skeleton/          the empty tree a new vault is a copy of
 example-vault/     a complete worked vault, entirely fictional
 ```
@@ -26,7 +26,7 @@ files can do them.
 2. **Copy `docs/conventions.md` into the new vault at `00-core/meta/conventions.md`.**
    The skeleton deliberately ships without it so there is one source of truth per repo;
    every pointer in the skeleton expects it at that path once copied.
-3. **Fill every angle-bracketed slot in the vault's `CLAUDE.md`** — OPERATOR (whose brain
+3. **Fill every angle-bracketed slot in the vault's `CLAUDE.md`:** OPERATOR (whose brain
    this is), AGENT-NAME (what the maintaining agent is called) and VENTURE (one line of
    work). Then delete the setup paragraph. The same slots appear in `00-core/hot.md`,
    `10-memory/_memory-index.md` and the six templates under `00-core/meta/templates/`.
@@ -46,7 +46,7 @@ Do not preload the docs. Reach for them by task:
 | Task | Read |
 |---|---|
 | Deciding where a file goes | `docs/conventions.md` §3 |
-| Naming a file, writing front-matter | `docs/conventions.md` §5–§6 |
+| Naming a file, writing front-matter | `docs/conventions.md` §5 and §6 |
 | Understanding what memory is for | `docs/memory-model.md` |
 | Wiring or running the nightly loop | `docs/consolidation.md` |
 
@@ -61,7 +61,7 @@ boundary is what the thing is and who maintains it, never what it is about.
 - **`example-vault/` is fiction.** Mara Voss, her studio, Café Lumen, her suppliers and
   every price and date in that tree are invented. They are there to demonstrate
   conventions. **Never present anything from `example-vault/` as a fact about a real
-  person, business or product**, and never copy its content into a real vault — copy
+  person, business or product**, and never copy its content into a real vault. Copy
   `skeleton/` instead.
 - **Do not edit `docs/` to match one user's preferences.** It is the published method. A
   vault-specific deviation belongs in that vault's own `00-core/`, not here.
@@ -73,5 +73,5 @@ boundary is what the thing is and who maintains it, never what it is about.
 ## If you are asked to extend the method
 
 Say what it costs. Every rule in `docs/conventions.md` earns its place by naming the
-tool behaviour that breaks without it — a rule that cannot name its failure mode is a
+tool behaviour that breaks without it. A rule that cannot name its failure mode is a
 preference, and preferences belong in a vault, not in a spec.

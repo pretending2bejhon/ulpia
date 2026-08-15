@@ -23,7 +23,7 @@ current, and runs the nightly consolidation pass.
 
 Clay is a `domain:` value, not a directory, because its parts have different lifecycles. A
 procedure can go stale, a decision is bound to a date, and a rendered board has no truth
-value at all — filing them together would put each one in two plausible homes.
+value at all: filing them together would put each one in two plausible homes.
 
 | Part | Where it lives |
 |---|---|
@@ -31,7 +31,7 @@ value at all — filing them together would put each one in two plausible homes.
 | The cache it rewrites every session | `00-core/hot.md` |
 | The routing table it reads | [[_memory-index]] |
 | What it renders for Mara | `40-artifacts/boards/orders-board__plan.md` |
-| Its code | none yet — the studio is one person and Clay runs from the boot file |
+| Its code | none yet: the studio is one person and Clay runs from the boot file |
 
 ## Reassembling it
 
@@ -41,4 +41,4 @@ rg -l '^type: sop$' 10-memory/procedural/vault/
 ```
 
 This hub is the human entry point. The `domain/clay` tag is the agent's, and it is the one
-that survives a reorganisation — the folders can move, the query cannot break.
+that survives a reorganisation: the folders can move, the query cannot break.

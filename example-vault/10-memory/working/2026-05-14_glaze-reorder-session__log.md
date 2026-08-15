@@ -15,7 +15,7 @@ aliases:
 
 # Glaze reorder session
 
-One file for one session. Nothing here is durable yet — consolidation decides what is
+One file for one session. Nothing here is durable yet: consolidation decides what is
 promoted into `semantic/` and what is dropped.
 
 ## What happened

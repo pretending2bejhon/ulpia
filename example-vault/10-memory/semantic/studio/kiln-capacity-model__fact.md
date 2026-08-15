@@ -24,8 +24,8 @@ aliases:
 
 # Kiln capacity model
 
-**Falls over if:** the old kiln does not complete four firings in a normal week —
-`UNVERIFIED`.
+**Falls over if:** the old kiln does not complete four firings in a normal week
+(`UNVERIFIED`).
 
 ## The number
 
@@ -33,7 +33,7 @@ One kiln produces roughly **40 finished pieces a week**.
 
 Every piece is fired twice. A bisque load holds about 40 pieces because they may touch; a
 glaze load holds about 15 because they may not. So 40 finished pieces cost one bisque
-firing plus not quite three glaze firings — call it four firings, which is what the kiln
+firing plus not quite three glaze firings: call it four firings, which is what the kiln
 does in a week that goes well.
 
 Café Lumen's 60-piece order is therefore a week and a half of kiln time, and two standing
@@ -44,7 +44,7 @@ That is the arithmetic behind [[2026-05-10_second-kiln__decision]].
 
 Four firings a week is the only input here that is not measured. Everything else follows
 from load geometry, which does not change. If the real figure is three, the ceiling is 30
-pieces a week and the delivery date on the current order has no slack at all — and a
+pieces a week and the delivery date on the current order has no slack at all. A
 reader who met that caveat in a closing paragraph would already have quoted a lead time.
 
 ## What the verify line actually checks

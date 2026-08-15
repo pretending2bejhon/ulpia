@@ -8,39 +8,39 @@ In daily production since June 2026. No vector database.
 
 Most agent-memory projects give you a store and leave the hard part to you: **deciding
 where a thing goes.** Ulpia's contribution is the two rules that make that decision
-mechanical — a hard split between *claims* and *artifacts*, and a placement procedure
+mechanical: a hard split between *claims* and *artifacts*, and a placement procedure
 you run top to bottom and stop at the first match. Two people filing the same file land
 in the same folder. So do two agents.
 
-Named after the *Bibliotheca Ulpia*, Trajan's library in Rome — Greek and Latin halls
+Named after the *Bibliotheca Ulpia*, Trajan's library in Rome: Greek and Latin halls
 flanking his column, and the only Roman library confirmed to have survived to the fall
 of the empire that built it. Plain files outlast the systems stacked on top of them.
 
 ---
 
-## What this is — and is not
+## What this is and is not
 
 Three things ship here: the **specification** ([docs/](docs/)), a copyable empty
-**skeleton**, and a complete worked **example vault**. No code ships — that is a
+**skeleton**, and a complete worked **example vault**. No code ships. That is a
 decision, not a gap. The method describes an operating loop (nightly consolidation,
 executed `verify:` lines, lint); this repository specifies those contracts precisely
 enough to implement, and [docs/consolidation.md](docs/consolidation.md) states the
 reasoning. You bring the runner: any agent that reads and writes files. The author runs
 the loop with Claude Code against a production vault; reference scripts are planned for
-v1.1. Until then, treat this as a specification and a template you instantiate — not a
-package you install. The trust model — what is code, what is data, and what never
-crosses between them — is in [SECURITY.md](SECURITY.md).
+v1.1. Until then, treat this as a specification and a template you instantiate, not a
+package you install. The trust model is in [SECURITY.md](SECURITY.md): what is code,
+what is data, and what never crosses between them.
 
 ---
 
 ## Why files
 
 **Because a literal search over a purposefully-shaped tree is a serious retrieval
-strategy, not a fallback.** A 2026 study of agentic search — *Is Grep All You Need? How
+strategy, not a fallback.** A 2026 study of agentic search, *Is Grep All You Need? How
 Agent Harnesses Reshape Agentic Search* ([arXiv:2605.15184](https://arxiv.org/abs/2605.15184),
-Sen, Kasturi, Lumer, Gulati and Subbiah) — compared grep-based retrieval against vector
+Sen, Kasturi, Lumer, Gulati and Subbiah), compared grep-based retrieval against vector
 retrieval across agent harnesses on 116 LongMemEval questions and found grep generally
-scored higher in that comparison — in their Table 1, grep-based inline retrieval won
+scored higher in that comparison. In their Table 1, grep-based inline retrieval won
 its vector counterpart in every model-harness pairing tested, up to 93.1% against
 83.6% with the strongest pairing, while the *same model* swung from 93.1% to 76.7% on
 harness choice alone. Their own caveat matters and is repeated here: results
@@ -66,7 +66,7 @@ Three more reasons, none of them about benchmarks:
 
 A **claim** is a sentence that can be true or false and can go stale.
 An **artifact** is a thing; it has no truth value and becomes irrelevant instead.
-The boundary is *what the thing is and who maintains it* — **never what it is about.**
+The boundary is *what the thing is and who maintains it*, **never what it is about.**
 
 That last line is the whole design. Sort by subject and every file about one customer
 has two defensible homes; sort by what it *is* and there is exactly one right answer.
@@ -83,20 +83,20 @@ cp ulpia/docs/conventions.md my-vault/00-core/meta/conventions.md
 
 Then:
 
-1. Fill every angle-bracketed slot in the copied tree — OPERATOR, AGENT-NAME, VENTURE
+1. Fill every angle-bracketed slot in the copied tree: OPERATOR, AGENT-NAME, VENTURE
    and the `<YYYY-MM-DD>` dates. `CLAUDE.md` carries most of them; `00-core/hot.md` and
    the `_*-index.md` files carry the rest.
-   `rg '<[A-Z]' my-vault --glob '!00-core/meta/**'` lists every one — everything under
+   `rg '<[A-Z]' my-vault --glob '!00-core/meta/**'` lists every one. Everything under
    `00-core/meta/` keeps its slots, because templates are blank forms and the spec's
    examples are examples. Then delete the setup paragraph in `CLAUDE.md`.
-2. Give the copied `conventions.md` its front-matter — its opening lines say exactly
+2. Give the copied `conventions.md` its front-matter. Its opening lines say exactly
    what to add.
 3. Point your agent at the vault. Any agent that can read and write files will do. If
-   yours auto-loads a different boot filename — `AGENTS.md`, `GEMINI.md` — rename
+   yours auto-loads a different boot filename (`AGENTS.md`, `GEMINI.md`), rename
    `CLAUDE.md` to match; nothing inside it is agent-specific.
 4. First session: it reads `CLAUDE.md`, then `00-core/hot.md`, and nothing else until
    the task needs more. Capture into `10-memory/inbox.md` whenever placement is
-   unclear — sorting it out is consolidation's job, not yours.
+   unclear. Sorting it out is consolidation's job, not yours.
 
 That is the whole setup. Everything below is explanation.
 
@@ -108,7 +108,7 @@ Numbers are spaced by ten so a tier can be inserted without renumbering.
 
 | Tier | Holds | Loaded |
 |---|---|---|
-| `00-core/` | identity and conventions — config, not memory | boot file only |
+| `00-core/` | identity and conventions: config, not memory | boot file only |
 | `10-memory/` | **claims**, agent-maintained | on demand |
 | `20-ventures/` | work artifacts, five folders per venture | on demand |
 | `30-personal/` | personal artifacts | on demand |
@@ -164,11 +164,11 @@ tags:
 
 And the body opens with the line that matters, above the arithmetic:
 
-> **Falls over if:** the old kiln does not complete four firings in a normal week —
+> **Falls over if:** the old kiln does not complete four firings in a normal week.
 > `UNVERIFIED`.
 
 **Any number that governs a decision names its own breaking assumption first**, and
-carries a `verify:` your nightly loop executes — so a gate nobody checked becomes
+carries a `verify:` your nightly loop executes, so a gate nobody checked becomes
 a row in tonight's report instead of silence. A caveat at the bottom of a note arrives
 after the reader has already believed the number. The whole file is
 [in the example vault](example-vault/10-memory/semantic/studio/kiln-capacity-model__fact.md).
@@ -180,30 +180,30 @@ after the reader has already believed the number. The whole file is
 [`example-vault/`](example-vault/) is a complete, working vault belonging to **Mara
 Voss**, a fictional solo ceramicist. She sells wholesale to cafés and teaches a Saturday
 class; her agent is called Clay. Over one month a café places a first wholesale order,
-the order strains her single kiln, and everything that follows — a capacity model, a
-decision, a supplier switch, an autumn plan — is recorded the way this method says to
-record it.
+the order strains her single kiln, and everything that follows is recorded the way this
+method says to record it: a capacity model, a decision, a supplier switch, an autumn
+plan.
 
 **She is invented. No real business, person, place or price appears anywhere in this
 repository.**
 
 Five files worth opening, each for one convention:
 
-- [`kiln-capacity-model__fact.md`](example-vault/10-memory/semantic/studio/kiln-capacity-model__fact.md)
-  — **the falls-over line.** A number that governs a decision names the assumption under
+- [`kiln-capacity-model__fact.md`](example-vault/10-memory/semantic/studio/kiln-capacity-model__fact.md):
+  **the falls-over line.** A number that governs a decision names the assumption under
   it on body line one, and carries a `verify:` your nightly loop executes.
-- [`glaze-supplier-north-shore__fact.md`](example-vault/10-memory/semantic/suppliers/glaze-supplier-north-shore__fact.md)
-  — **validity, not patching.** A claim that stopped being true keeps its own text and
+- [`glaze-supplier-north-shore__fact.md`](example-vault/10-memory/semantic/suppliers/glaze-supplier-north-shore__fact.md):
+  **validity, not patching.** A claim that stopped being true keeps its own text and
   gets `superseded_by:`. Compare it against
   [its successor](example-vault/10-memory/semantic/suppliers/glaze-supplier-hearthline__fact.md).
-- [`2026-05-02_cafe-lumen-first-order__log.md`](example-vault/10-memory/episodic/2026-05/2026-05-02_cafe-lumen-first-order__log.md)
-  — **typed observation lines.** `- [decision]`, `- [constraint]`, `- [risk]`, so that
+- [`2026-05-02_cafe-lumen-first-order__log.md`](example-vault/10-memory/episodic/2026-05/2026-05-02_cafe-lumen-first-order__log.md):
+  **typed observation lines.** `- [decision]`, `- [constraint]`, `- [risk]`, so that
   one search returns every decision ever made.
-- [`clay__hub.md`](example-vault/10-memory/semantic/systems/clay__hub.md)
-  — **a system is a `domain:` value, never a folder**, because its parts have different
+- [`clay__hub.md`](example-vault/10-memory/semantic/systems/clay__hub.md):
+  **a system is a `domain:` value, never a folder**, because its parts have different
   lifecycles. The hub reassembles it with one query.
-- [`CLAUDE.md`](example-vault/CLAUDE.md)
-  — **the boot file**, filled in: load order, the one rule, the write policy.
+- [`CLAUDE.md`](example-vault/CLAUDE.md):
+  **the boot file**, filled in: load order, the one rule, the write policy.
 
 ---
 
@@ -211,15 +211,15 @@ Five files worth opening, each for one convention:
 
 Seven things this cost to learn. They are the reason the rules above look the way they
 do, and every one of them failed **silently** the first time. They are field notes from
-one operator's production vault — n = 1, no control group; take the shape, not the
+one operator's production vault (n = 1, no control group); take the shape, not the
 decimals.
 
 **Six processes writing one file produce fewer files than success messages.** Lost
-writes do not error. They are reported as recorded, which is strictly worse than a crash
-— a crash gets noticed. One working file per session, never a shared one.
+writes do not error. They are reported as recorded, which is strictly worse than a
+crash: a crash gets noticed. One working file per session, never a shared one.
 
 **Discipline is not a control where a mechanical gate is possible.** A verification rule
-followed by hand held **27 times out of 55** — about half. That number is why load-bearing
+followed by hand held **27 times out of 55**, about half. That number is why load-bearing
 claims carry a `verify:` key a script executes, instead of a convention everyone agrees
 with and forgets under pressure.
 
@@ -227,8 +227,8 @@ with and forgets under pressure.
 sat in a session's always-loaded context and cost roughly **11% of every boot** before
 anyone noticed, because nothing about a stale line looks different from a fresh one.
 
-**An unscoped search returns several times the noise of a scoped one** — measured at
-three to ten times on the earlier layout, which is precisely what motivated the
+**An unscoped search returns several times the noise of a scoped one.** On the earlier
+layout it measured three to ten times, which is precisely what motivated the
 restructure into tiers. The search space is a design surface. You are already paying for
 it; you may as well shape it.
 
@@ -242,7 +242,7 @@ when the editor itself performs the rename. A rename is a three-step transaction
 rewrite inbound links, update the index.
 
 **Two taxonomies over one corpus is how structure rots.** Split a folder on two axes at
-once and every new file gets two defensible homes — half end up in each, and no single
+once and every new file gets two defensible homes. Half end up in each, and no single
 search finds them all. One axis per folder level, chosen because it answers the most
 queries.
 
@@ -255,8 +255,8 @@ here is the trade:
 
 | | Ulpia (files) | Embedding-based memory |
 |---|---|---|
-| Verbatim recall of what you wrote | strong — you get the file, not a paraphrase | weaker; retrieves by similarity |
-| Similarity across different wording | weak — a literal search needs shared words | strong; this is the whole point |
+| Verbatim recall of what you wrote | strong; you get the file, not a paraphrase | weaker; retrieves by similarity |
+| Similarity across different wording | weak; a literal search needs shared words | strong; this is the whole point |
 | Auditability | read the whole store, diff every change | opaque by construction |
 | History | git, free | needs to be built |
 | Infrastructure | none | a service, a model, a schema |
@@ -274,17 +274,17 @@ trustworthy: you can read all of it and know exactly why it said what it said.
 ## Benchmarks, honestly
 
 **No number in this section was produced by Ulpia.** Every score is the publisher's
-own reported result under its own eval setup — actor model, judge and question subset
+own reported result under its own eval setup. Actor model, judge and question subset
 all differ per row, so a row compares against the baseline in its own source, never
 against another row. Where a vendor and a third party disagree, both numbers appear.
 
 The two benchmarks the field actually uses:
 
 - **LongMemEval** ([arXiv:2410.10813](https://arxiv.org/abs/2410.10813), ICLR 2025,
-  MIT) — 500 questions over long chat histories: information extraction,
+  MIT) has 500 questions over long chat histories: information extraction,
   multi-session and temporal reasoning, knowledge updates, and abstention.
 - **LoCoMo** ([arXiv:2402.17753](https://arxiv.org/abs/2402.17753), ACL 2024,
-  CC BY-NC) — QA over very long multi-session dialogues. Standard practice runs four
+  CC BY-NC) is QA over very long multi-session dialogues. Standard practice runs four
   of its five categories; the fifth ships without gold answers.
 
 | Benchmark | System | Published score | Actor model | Source |
@@ -297,7 +297,7 @@ The two benchmarks the field actually uses:
 | LoCoMo | Mem0, graph variant | 68.44 J | gpt-4o-mini | [arXiv:2504.19413](https://arxiv.org/abs/2504.19413) |
 | LoCoMo | Zep, as configured by Mem0 | 65.99 J · disputed | gpt-4o-mini | [arXiv:2504.19413](https://arxiv.org/abs/2504.19413) |
 | LoCoMo | Zep, own corrected run | 75.14 J | gpt-4o-mini | [getzep.com](https://blog.getzep.com/lies-damn-lies-statistics-is-mem0-really-sota-in-agent-memory/) |
-| LoCoMo | **Letta filesystem agent — markdown files + search tools** | **74.0%** | gpt-4o-mini | [letta.com](https://www.letta.com/blog/benchmarking-ai-agent-memory/) |
+| LoCoMo | **Letta filesystem agent (markdown files + search tools)** | **74.0%** | gpt-4o-mini | [letta.com](https://www.letta.com/blog/benchmarking-ai-agent-memory/) |
 
 *Scores marked J use the Mem0 paper's LLM-judge metric; percentage rows use each
 source's own accuracy metric. The two are not interchangeable. Paper rows are pinned by
@@ -316,9 +316,9 @@ its ground truth broken (99 of 1,540 questions) and the standard LLM judge accep
 62.81% of deliberately wrong-but-topical answers. And both corpora fit inside
 a frontier model's context window, which is why a full-context baseline with no memory
 system at all is competitive in every table. (DMR, the earlier standard, is omitted
-entirely: a full-context baseline scores 98.0% on it —
+entirely: a full-context baseline scores 98.0% on it, per
 [arXiv:2501.13956](https://arxiv.org/abs/2501.13956).) Read every leaderboard in this
-field — including any future one in this repo — with all of that in mind.
+field, including any future one in this repo, with all of that in mind.
 
 **Self-run numbers are v1.1, and the method is pinned now:**
 
@@ -342,15 +342,15 @@ Three 2026 results give the design bets in this repo named counterparts:
 
 - **The harness learns; the weights stay frozen.** *Continual Harness* (Karten et
   al., [arXiv:2605.09998](https://arxiv.org/abs/2605.09998)) formalizes an agent that
-  improves by editing its own prompt, memories, skills and subagent specs — an act
+  improves by editing its own prompt, memories, skills and subagent specs: an act
   phase, then a separate refine phase that rereads raw trajectories and consolidates,
   all over plain files, weights untouched. That act/refine split is this method's
   session/consolidation split, and the confidence grades their memory entries carry
   are the same instinct as this method's belief machinery.
 - **Long context as an environment, not a prompt.** *Recursive Language Models*
   (Zhang, Kraska & Khattab, [arXiv:2512.24601](https://arxiv.org/abs/2512.24601))
-  keeps long context outside the window as a variable the model programs over — and,
-  left free to choose a strategy, frontier models converge on peeking at structure
+  keeps long context outside the window as a variable the model programs over. Left
+  free to choose a strategy, frontier models converge on peeking at structure
   first, then grepping. A typed tree is that environment made durable, and the
   nightly loop pre-computes at consolidation time what an RLM pays for again at every
   query.
@@ -358,8 +358,8 @@ Three 2026 results give the design bets in this repo named counterparts:
   [prime-agent](https://github.com/PrimeIntellect-ai/prime-agent) (MIT, 2026) ships
   both ideas, with memory held in a machine-edited JSON state file refined between
   episodes. Ulpia is the same thesis on the opposite substrate: memory a human can
-  read, diff and correct line by line, with truth maintenance at *read* time —
-  supersession, review dates, a `verify:` line a script executes — not only quality
+  read, diff and correct line by line, with truth maintenance at *read* time
+  (supersession, review dates, a `verify:` line a script executes), not only quality
   control at write time.
 
 ---
@@ -369,12 +369,12 @@ Three 2026 results give the design bets in this repo named counterparts:
 | Read this | For |
 |---|---|
 | [docs/memory-model.md](docs/memory-model.md) | why memory splits into four types, and what goes in it |
-| [docs/conventions.md](docs/conventions.md) | naming, front-matter, placement, growth, lint — the mechanics |
+| [docs/conventions.md](docs/conventions.md) | naming, front-matter, placement, growth, lint: the mechanics |
 | [docs/consolidation.md](docs/consolidation.md) | the nightly loop: draining, promotion, belief decay |
 | [skeleton/](skeleton/) | the empty tree your vault starts as a copy of |
 | [example-vault/](example-vault/) | all of it, demonstrated |
 
 ---
 
-MIT licensed — see [LICENSE](LICENSE). Built and maintained by Jhonalbert Alvarez, for
+MIT licensed. See [LICENSE](LICENSE). Built and maintained by Jhonalbert Alvarez, for
 one working agent, before it was for anyone else.

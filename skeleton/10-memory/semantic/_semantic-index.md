@@ -10,7 +10,7 @@ tags:
 
 # Semantic index
 
-**semantic/** holds claims bound by nothing — what is true right now, undated.
+**semantic/** holds claims bound by nothing: what is true right now, undated.
 Sub-folders split on one axis only, usually domain. Written by consolidation, never
 mid-session.
 

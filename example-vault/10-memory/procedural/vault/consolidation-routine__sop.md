@@ -21,7 +21,7 @@ aliases:
 The consolidation routine is the only thing that writes `semantic/` and `procedural/`. A
 live session never does, because those two layers are organised by subject rather than by
 date, which makes them the only places where two sessions would plausibly edit the same
-file — and concurrent writes to one file do not error, they just go missing.
+file. Concurrent writes to one file do not error, they just go missing.
 
 ## Steps
 
@@ -30,7 +30,7 @@ file — and concurrent writes to one file do not error, they just go missing.
    now → `semantic/`, a repeatable procedure → `procedural/`, a future date →
    `prospective/`. Anything that resists the question stays in the inbox.
 3. Write the promotion. A claim that replaces an existing one gets `superseded_by:` on the
-   old note and `valid_from:` on the new one — never a correction typed over the old body.
+   old note and `valid_from:` on the new one, never a correction typed over the old body.
 4. Stamp the machine-only keys and nothing else: `updated`, `retrieval_count`,
    `last_retrieved`, `last_consolidated`, `belief`, `belief_reason`.
 5. Leave `reviewed` alone. It is manual, it means a human confirmed the claim, and it must
@@ -41,7 +41,7 @@ file — and concurrent writes to one file do not error, they just go missing.
 ## What breaks when you skip a step
 
 Skipping step 2's honesty test is how a claim gets filed confidently in the wrong folder,
-where nobody will ever look for it — an unsorted inbox line is visible and annoying, which
+where nobody will ever look for it: an unsorted inbox line is visible and annoying, which
 is why it gets fixed.
 Writing a correction into an old body instead of step 3 loses the answer to "what did we
 believe in March".

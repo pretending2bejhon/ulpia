@@ -37,7 +37,7 @@ firing schedule does not have to plan around it.
 
 ## Why this note reads as though it were still true
 
-It does, because it was — from `valid_from` until the claim that replaced it. A superseded
+It does, because it was: from `valid_from` until the claim that replaced it. A superseded
 claim keeps its own text and gets `superseded_by:` in the front-matter; it does not get a
 correction written over the top of it. The current supplier claim is
 [[glaze-supplier-hearthline__fact]], and the session that made the change is

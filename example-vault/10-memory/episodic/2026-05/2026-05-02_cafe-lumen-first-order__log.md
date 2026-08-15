@@ -30,7 +30,7 @@ Payment is on delivery, not on order, and they asked to be invoiced monthly if t
 becomes a standing arrangement.
 
 - [decision] 60 pieces at the wholesale tier, delivery promised 2026-05-29
-- [decision] Unglazed rims on every piece — their staff stack cups wet
+- [decision] Unglazed rims on every piece: their staff stack cups wet
 - [constraint] Payment on delivery, so the clay and glaze are financed by the studio first
 - [constraint] 60 pieces is four glaze loads, and the kiln does four firings in a good week
 - [risk] One kiln, and the delivery date has no slack in it if a firing goes wrong

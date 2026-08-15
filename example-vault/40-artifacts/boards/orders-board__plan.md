@@ -16,7 +16,7 @@ aliases:
 # Orders board
 
 This board is an **artifact**, not memory. It carries typed front-matter because Clay
-updates it and needs a handle on it — and front-matter still does not make it a claim. It
+updates it and needs a handle on it. Front-matter still does not make it a claim. It
 is **derived state**: the claims it is rendered from live in `10-memory/semantic/clients/`
 and the episodic record, and when the board disagrees with them, the claims win and the
 board gets regenerated. Staleness is its failure mode, and the fix is always re-rendering,

@@ -28,7 +28,7 @@ belief_reason: reinforced by the 2026-05-14 session; no contradicting claim on f
 # Café Lumen
 
 Café Lumen is a two-room café that took the studio's first wholesale order. This note is
-the claim side of that relationship — what is true about them right now. Their catalogue,
+the claim side of that relationship: what is true about them right now. Their catalogue,
 quotes and delivery notes are artifacts and live in
 `20-ventures/voss-ceramics/clients/cafe-lumen/`.
 
@@ -43,7 +43,7 @@ come back chipped.
 
 Payment is on delivery, not on order.
 They have asked to be invoiced monthly if the arrangement becomes standing, which it has
-not yet — one order is not a pattern.
+not yet: one order is not a pattern.
 
 ## Contact
 
