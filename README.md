@@ -273,10 +273,127 @@ trustworthy: you can read all of it and know exactly why it said what it said.
 
 ## Benchmarks, honestly
 
-**No number in this section was produced by Ulpia.** Every score is the publisher's
+This section leads with a result that went against the author's design. That is
+deliberate. A self-run benchmark is only worth reading if it can come back negative,
+and this one did.
+
+### A three-arm self-run, August 2026
+
+**Setup.** [LongMemEval-S](https://arxiv.org/abs/2410.10813): 498 of its 500
+questions, scored identically in every arm (2 questions are excluded by name because
+they cannot pass the harness's gold-isolation gates by design; the exclusion list is
+versioned and identical across arms). Actor model `claude-sonnet-5` in all three arms.
+The judge is an LLM judge, also `claude-sonnet-5`, in the harness's local mode, which
+is not the benchmark's official judge. Three arms over the same pseudonymized
+transcripts:
+
+- **vault_agent.** An agent with read and search tools over an Ulpia-shaped vault
+  built from the transcripts: dated episodic tree, indexes, front matter, `hot.md`.
+- **flat_grep.** The same agent, same tools, same episode caps, over a flat folder of
+  the same transcripts: no front matter, no `hot.md`, no indexes, no dated tree. The
+  system prompt is byte-identical except one line.
+- **control_rag.** One-shot embedding retrieval: the question is embedded, the
+  highest-scoring chunks go into a single prompt, one answer call, no agent loop.
+
+The reading was pre-registered before the flat arm ran: vault ahead of flat at
+p < 0.05 means the structure pays; flat ahead means the structure costs; neither
+means the two are not detectably different at this sample size.
+
+**Result.**
+
+| Arm | Score | Cost (shadow estimate) | p50 latency | Median tool calls |
+|---|---|---|---|---|
+| vault_agent | 389/498 = 78.1% | $117.37 | 18.14 s | 5 |
+| flat_grep | 374/498 = 75.1% | $92.08 | 14.64 s | 3 |
+| control_rag | 272/498 = 54.6% | $34.24 | 5.94 s | one-shot |
+
+McNemar exact, two-sided: vault_agent vs control_rag p = 1.23e-22, flat_grep vs
+control_rag p = 1.84e-15, **vault_agent vs flat_grep p = 0.18**. Costs are shadow
+estimates recorded by the harness; the runs were billed to a subscription, so they
+are not invoiced API spend.
+
+**The pre-registered third branch fired: at n = 498, Ulpia's structure is not
+detectably different from agentic grep over a flat pile of transcripts.** The raw gap
+is 3.0 points (discordant pairs: 62 vault-only against 47 flat-only), inside the noise
+the pre-registration named.
+
+Read that with the control arm in view. The 23.5-point win over one-shot RAG does not
+belong to Ulpia's structure: the flat arm keeps 20.5 of those points with no dated
+tree, no indexes, no front matter and no `hot.md`. On this benchmark, at this n, the
+gain is the agent loop plus lexical search over readable files, not this method's
+organisation of them.
+
+The structure also costs. The vault agent spends its opening calls walking `hot.md`
+and the indexes before its first search; the flat agent's first call is the search.
+On this workload that orientation was a fixed tax the tree never earned back: $117.37
+against $92.08, p50 latency 18.14 s against 14.64 s, a median of 5 tool calls per
+question against 3 (2,802 total against 1,475).
+
+Per question type (cells this small cannot power a per-type claim; read these as
+directions to test, not findings):
+
+| Question type | n | vault_agent | flat_grep | control_rag |
+|---|---|---|---|---|
+| knowledge-update | 78 | 80.8% | 80.8% | 53.8% |
+| multi-session | 133 | 60.9% | 61.7% | 36.1% |
+| single-session-assistant | 56 | 100.0% | 98.2% | 96.4% |
+| single-session-preference | 30 | 60.0% | 63.3% | 50.0% |
+| single-session-user | 70 | 91.4% | 81.4% | 77.1% |
+| temporal-reasoning | 131 | 81.7% | 74.8% | 45.0% |
+
+The structure led in two types: temporal-reasoning (81.7% against 74.8%), the dated
+tree's home ground, and single-session-user (91.4% against 81.4%). It trailed or tied
+elsewhere.
+
+### What these numbers are not
+
+**Not comparable to any published LongMemEval result, including the table below.**
+This is a within-study comparison: same harness, same actor model, same local judge,
+same exclusions, across three arms. Change any of those and the numbers move. The
+harness enforces this position on itself: every run artifact records
+`comparable_to_published: false`, with the blocking reasons named (local judge mode,
+the exclusion list, the harness's own listed deviations). In particular, flat_grep's
+75.1% sitting near the Letta filesystem agent's 74.0% below is a coincidence of
+digits: different benchmark (LongMemEval-S here, LoCoMo there), different models,
+different judge, different harness. It is not a head-to-head, and reading it as one
+is exactly the error this section exists to prevent.
+
+**A solo self-run, on the author's own thesis.** One operator built the memory
+method, built the harness, and ran the benchmark. Every bias critics attribute to
+self-run numbers applies here. What this run has going for it is its direction: the
+headline finding is against the thesis, and it leads this section anyway.
+
+**Not yet reproducible by a stranger.** The harness is a private repository as of
+this writing. Pinned commits, per-question result files, cost ledgers and
+gold-leakage isolation scans (0 hits on all three arms) exist, but privately. Until
+the harness or the per-question artifacts are published, these numbers are the
+author's report, not evidence you can check. The publication commitment in the list
+at the end of this section still stands and is not discharged by this text.
+
+**A single sample.** Each question was answered once per arm. p = 0.18 is a
+single-sample point estimate; variance under repeated sampling is unmeasured.
+
+### What survives, and what does not
+
+A retrieval benchmark sees only the retrieval half of a memory method. What this one
+measured: an agent loop with lexical search over readable files beat one-shot
+embedding RAG by 23.5 points, found twice here, once through the vault and once
+through the flat pile. What it failed to find: any accuracy payoff for Ulpia's
+structure over flat files at this sample size. What it did not measure at all:
+placement determinism, auditability, supersession, `verify:` lines, consolidation,
+or what happens to a store that is maintained for months rather than ingested once.
+Those are the claims the rest of this README argues, and after this run they remain
+argued, not benchmarked. The retrieval claim this repository can still make honestly
+is narrower than before: files plus grep plus an agent is a strong retrieval
+baseline, and the tree's shape is not yet shown to add accuracy on top of it.
+
+### The published landscape
+
+**None of the numbers below was produced by Ulpia.** Every score is the publisher's
 own reported result under its own eval setup. Actor model, judge and question subset
 all differ per row, so a row compares against the baseline in its own source, never
-against another row. Where a vendor and a third party disagree, both numbers appear.
+against another row, and never against the self-run above. Where a vendor and a third
+party disagree, both numbers appear.
 
 The two benchmarks the field actually uses:
 
@@ -320,19 +437,24 @@ entirely: a full-context baseline scores 98.0% on it, per
 [arXiv:2501.13956](https://arxiv.org/abs/2501.13956).) Read every leaderboard in this
 field, including any future one in this repo, with all of that in mind.
 
-**Self-run numbers are v1.1, and the method is pinned now:**
+**Still open before any number above graduates:**
 
-- LongMemEval-S, all 500 questions, plus the 116-question subset used by
-  [arXiv:2605.15184](https://arxiv.org/abs/2605.15184) so the result is directly
-  comparable to that paper's Table 1.
-- At least one external memory system run through the same harness as a control. A
-  harness that only ever reports its own method winning is self-graded homework.
-- The harness, transcripts, pinned commit, actor model, judge model and total cost
-  published in this repo, so a stranger can reproduce every number.
-- LoCoMo under its research-only license, four of five categories, clearly framed.
+- At least one **external memory system** run through the same harness as a control.
+  The control_rag arm is a self-built baseline, not an external system, so the
+  self-graded-homework objection stands until a system the author did not build runs
+  through the same gates.
+- **The harness published**, with transcripts, pinned commit, actor and judge models,
+  per-question results and total cost, so a stranger can reproduce every number in
+  the self-run.
+- The benchmark's **official judge** run alongside the local judge.
+- **Repeated sampling** to put variance around the single-sample p = 0.18.
+- **LoCoMo** under its research-only license, four of five categories, clearly
+  framed.
 
-Until those land, Ulpia claims exactly nothing about benchmarks. The sections above
-are the argument; this section is the state of the field.
+Until those land, read the self-run as one operator measuring his own method with
+the weaknesses stated, and read the published table as the state of the field. The
+sections above this one are the argument; nothing in this section strengthens them,
+and one result in it weakens one of them.
 
 ---
 
