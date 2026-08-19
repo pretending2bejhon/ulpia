@@ -45,8 +45,11 @@ its vector counterpart in every model-harness pairing tested, up to 93.1% agains
 83.6% with the strongest pairing, while the *same model* swung from 93.1% to 76.7% on
 harness choice alone. Their own caveat matters and is repeated here: results
 "depend strongly on which harness and tool-calling style is used." This is not *vector
-search is bad*. It is that the shape of your file tree **is** your retrieval index, and
-it is a design surface most people leave on the floor.
+search is bad*. It is that grep in an agent loop is a real retrieval engine, and the
+repository's own three-arm run below agrees with the paper on that point while refusing
+the flattering half: the win belongs to the loop and the files, not measurably to the
+shape of the tree. The tree's shape earns its keep elsewhere: auditability, mechanical
+placement, and repair.
 
 Three more reasons, none of them about benchmarks:
 
